@@ -15,7 +15,7 @@ import com.example.weatherapp.databinding.FragmentLayoutBinding
 import com.example.weatherapp.logic.model.Location
 
 class PlaceFragment: Fragment() {
-    private val viewModel by lazy { ViewModelProvider(this).get(PlaceViewModel::class.java) }
+    private val viewModel by lazy { ViewModelProvider(this)[PlaceViewModel::class.java] }
 
     private lateinit var adapter: PlaceAdapter
 
@@ -54,13 +54,11 @@ class PlaceFragment: Fragment() {
 
         viewModel.placeLiveData.observe(viewLifecycleOwner) { result ->
             val places = result.getOrNull()
-            Log.d("debug start","$result")
-            Log.d("debug start","$places")
             if (places != null) {
                 viewBinder.recyclerView.visibility = View.VISIBLE
                 viewBinder.bgImageView.visibility = View.GONE
                 viewModel.placeList.clear()
-                viewModel.placeList.addAll(places as ArrayList<Location>)
+                viewModel.placeList.addAll(places)
                 adapter.notifyDataSetChanged()
             } else {
                 Toast.makeText(activity, "未能查询到任何地点", Toast.LENGTH_SHORT).show()

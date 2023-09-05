@@ -9,9 +9,13 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 object SunnyWeatherNetwork{
-    private val placeService = ServiceCreator.create<PlaceService>()
+    private val placeService = PlaceServiceCreator.create<PlaceService>()
+
+    private val weatherService = WeatherServiceCreator.create<WeatherService>()
 
     suspend fun searchPlaces(query:String) = placeService.searchPlaces(query).await()
+    suspend fun searchLifeIndex(query:String) = weatherService.searchLifeIndex(query).await()
+    suspend fun searchWeatherInfo(query:String) = weatherService.searchWeatherInfo(query).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCancellableCoroutine { continuation ->

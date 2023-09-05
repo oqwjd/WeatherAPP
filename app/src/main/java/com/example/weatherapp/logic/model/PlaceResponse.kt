@@ -2,7 +2,7 @@ package com.example.weatherapp.logic.model
 
 import com.google.gson.annotations.SerializedName
 
-data class PlaceResponse(val code:String,val location:List<Location>,val refer:Refer)
+data class PlaceResponse(val code:String,@SerializedName("poi")val location:ArrayList<Location>,val refer:Refer)
 
 data class Location(
     val name:String,
