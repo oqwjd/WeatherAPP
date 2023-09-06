@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:scrollbars="none"
     android:overScrollMode="never"
-    android:visibility="invisible"
     tools:context=".ui.weather.WeatherActivity">
 
     <LinearLayout

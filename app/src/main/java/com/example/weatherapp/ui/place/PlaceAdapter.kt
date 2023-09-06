@@ -1,6 +1,7 @@
 package com.example.weatherapp.ui.place
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +9,7 @@ import com.example.weatherapp.databinding.PlaceItemBinding
 import com.example.weatherapp.logic.model.Location
 import com.example.weatherapp.ui.weather.WeatherActivity
 
-class PlaceAdapter(val context: PlaceFragment, val placeList:List<Location>): RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
+class PlaceAdapter(private val context: PlaceFragment, private val placeList:ArrayList<Location>): RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
     class ViewHolder(viewBinder:PlaceItemBinding):RecyclerView.ViewHolder(viewBinder.root){
         val placeName = viewBinder.placeName
         val placeAddress = viewBinder.placeAddress
@@ -20,12 +21,12 @@ class PlaceAdapter(val context: PlaceFragment, val placeList:List<Location>): Re
 
         viewHolder.itemView.setOnClickListener{
             val position = viewHolder.layoutPosition
-            val intent = Intent(parent.context,WeatherActivity::class.java).apply {
-                putExtra("location",placeList[position].id)
-                putExtra("name",placeList[position].name)
-            }
+            val intent = Intent(parent.context,WeatherActivity::class.java)
+            Log.d("debug out", placeList[position].toString())
+            intent.putExtra("location",placeList[position].id)
+            intent.putExtra("name",placeList[position].name)
             context.startActivity(intent)
-            context.activity?.finish()
+//            context.activity?.finish()
         }
 
         return viewHolder

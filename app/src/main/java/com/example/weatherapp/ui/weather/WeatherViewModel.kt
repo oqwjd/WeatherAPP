@@ -16,7 +16,7 @@ class WeatherViewModel:ViewModel() {
     val weatherInfoList = ArrayList<Weather>()
 
     val weatherInfoLiveData = weatherLiveData.switchMap { query ->
-        Repository.searchWeather(query)
+        Repository.searchWeather(query.substring(0,9))
     }
 
 

@@ -16,6 +16,7 @@ object SunnyWeatherNetwork{
     suspend fun searchPlaces(query:String) = placeService.searchPlaces(query).await()
     suspend fun searchLifeIndex(query:String) = weatherService.searchLifeIndex(query).await()
     suspend fun searchWeatherInfo(query:String) = weatherService.searchWeatherInfo(query).await()
+    suspend fun searchNowTemp(query:String) = weatherService.searchTempNow(query).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCancellableCoroutine { continuation ->

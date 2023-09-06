@@ -12,8 +12,8 @@ interface LifeIndexDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLifeIndex(lifeIndex: LifeIndex)
 
-    @Query("SELECT * FROM `life-index` WHERE id = :id")
-    suspend fun getLifeIndexById(id:String): ArrayList<DailyDate>?
+    @Query("SELECT date, type, name, level, category, text FROM `life-index` WHERE id = :id")
+    suspend fun getLifeIndexById(id:String): List<DailyDate>?
 
     @Query("DELETE FROM `life-index` WHERE id = :id")
     suspend fun deleteLifeIndexById(id:String)
